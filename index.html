@@ -1,0 +1,1253 @@
+\<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FindIt - Lost & Found Portal</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #1e293b;
+        }
+
+        /* NAVBAR */
+        nav {
+            height: 70px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        .logo span {
+            color: #111827;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #475569;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        .login-btn {
+            background: #2563eb;
+            color: white !important;
+            padding: 10px 18px;
+            border-radius: 8px;
+        }
+
+        /* HERO */
+        .hero {
+            padding: 80px 7% 70px;
+            background: linear-gradient(135deg, #eff6ff, #ffffff);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .hero-text {
+            max-width: 650px;
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: #0f172a;
+        }
+
+        .hero h1 span {
+            color: #2563eb;
+        }
+
+        .hero p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 13px 22px;
+            border-radius: 9px;
+            border: none;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .primary-btn {
+            background: #2563eb;
+            color: white;
+        }
+
+        .secondary-btn {
+            background: white;
+            color: #2563eb;
+            border: 1px solid #2563eb;
+        }
+
+        .hero-card {
+            width: 350px;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        }
+
+        .hero-card-icon {
+            font-size: 55px;
+            margin-bottom: 20px;
+        }
+
+        .hero-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .hero-card p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* SEARCH */
+        .search-section {
+            padding: 40px 7%;
+        }
+
+        .search-box {
+            background: white;
+            padding: 20px;
+            border-radius: 14px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 14px;
+            border: 1px solid #dbe1ea;
+            border-radius: 8px;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .search-box button {
+            padding: 0 25px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* ITEMS */
+        .items-section {
+            padding: 20px 7% 70px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .section-header h2 {
+            font-size: 28px;
+        }
+
+        .filters {
+            display: flex;
+            gap: 10px;
+        }
+
+        .filters button {
+            padding: 9px 16px;
+            border-radius: 20px;
+            border: 1px solid #dbe1ea;
+            background: white;
+            cursor: pointer;
+        }
+
+        .filters button.active {
+            background: #2563eb;
+            color: white;
+        }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .item-card {
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: 0.2s;
+        }
+
+        .item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.09);
+        }
+
+        .item-image {
+            height: 180px;
+            background: #eaf0f8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 65px;
+        }
+
+        .item-content {
+            padding: 20px;
+        }
+
+        .item-content h3 {
+            margin-bottom: 10px;
+        }
+
+        .item-info {
+            color: #64748b;
+            font-size: 14px;
+            margin: 7px 0;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .lost {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .found {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .view-btn {
+            width: 100%;
+            margin-top: 15px;
+            padding: 11px;
+            border: none;
+            border-radius: 7px;
+            background: #eff6ff;
+            color: #2563eb;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* REPORT */
+        .report-section {
+            padding: 70px 7%;
+            background: white;
+        }
+
+        .report-container {
+            max-width: 750px;
+            margin: auto;
+        }
+
+        .report-container h2 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .report-container > p {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 35px;
+        }
+
+        .form {
+            background: #f8fafc;
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #dbe1ea;
+            border-radius: 8px;
+            outline: none;
+            background: white;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #0f172a;
+            color: white;
+            padding: 35px 7%;
+            text-align: center;
+        }
+
+        footer p {
+            color: #94a3b8;
+            margin-top: 8px;
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            width: 450px;
+            max-width: 100%;
+            padding: 30px;
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        .modal-content h2 {
+            margin-bottom: 20px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .items-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                padding: 0 5%;
+            }
+
+            .nav-links a:not(.login-btn) {
+                display: none;
+            }
+
+            .hero {
+                padding: 55px 5%;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero-card {
+                width: 100%;
+            }
+
+            .search-section,
+            .items-section,
+            .report-section {
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .search-box button {
+                padding: 12px;
+            }
+
+            .items-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .filters {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">Find<span>It</span></div>
+
+    <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#items">Browse Items</a>
+        <a href="#report">Report Item</a>
+        <a href="#" onclick="showLogin()">Login</a>
+    </div>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+    <div class="hero-text">
+        <h1>
+            Lost something?
+            <span>Let's find it.</span>
+        </h1>
+
+        <p>
+            A simple campus Lost & Found portal that helps students
+            report, search and recover their belongings.
+        </p>
+
+        <div class="hero-buttons">
+            <button class="btn primary-btn"
+                    onclick="scrollToReport('Lost')">
+                Report Lost Item
+            </button>
+
+            <button class="btn secondary-btn"
+                    onclick="scrollToReport('Found')">
+                Report Found Item
+            </button>
+        </div>
+    </div>
+
+    <div class="hero-card">
+        <div class="hero-card-icon">🔎</div>
+
+        <h3>Find what you're looking for</h3>
+
+        <p>
+            Search through items reported by students
+            across your campus.
+        </p>
+    </div>
+
+</section>
+
+
+<!-- SEARCH -->
+<section class="search-section">
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search for an item, e.g. wallet, ID card, headphones..."
+            onkeyup="searchItems()"
+        >
+
+        <button onclick="searchItems()">
+            Search
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ITEMS -->
+<section class="items-section" id="items">
+
+    <div class="section-header">
+
+        <h2>Recently Reported</h2>
+
+        <div class="filters">
+            <button class="active" onclick="filterItems('all', this)">
+                All
+            </button>
+
+            <button onclick="filterItems('lost', this)">
+                Lost
+            </button>
+
+            <button onclick="filterItems('found', this)">
+                Found
+            </button>
+        </div>
+
+    </div>
+
+
+    <div class="items-grid" id="itemsGrid">
+
+        <!-- ITEM 1 -->
+        <div class="item-card" data-type="lost" data-name="black wallet">
+
+            <div class="item-image">
+                👛
+            </div>
+
+            <div class="item-content">
+
+                <span class="status lost">LOST</span>
+
+                <h3>Black Wallet</h3>
+
+                <p class="item-info">📍 CSE Department</p>
+
+                <p class="item-info">📅 24 September 2026</p>
+
+                <p class="item-info">
+                    Black leather wallet with college ID.
+                </p>
+
+                <button
+                    class="view-btn"
+                    onclick="showDetails(
+                        'Black Wallet',
+                        'Lost',
+                        'CSE Department',
+                        '24 September 2026',
+                        'Black leather wallet containing a college ID.'
+                    )">
+                    View Details
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ITEM 2 -->
+        <div class="item-card" data-type="found" data-name="airpods">
+
+            <div class="item-image">
+                🎧
+            </div>
+
+            <div class="item-content">
+
+                <span class="status found">FOUND</span>
+
+                <h3>AirPods</h3>
+
+                <p class="item-info">📍 College Library</p>
+
+                <p class="item-info">📅 23 September 2026</p>
+
+                <p class="item-info">
+                    White AirPods case found near the entrance.
+                </p>
+
+                <button
+                    class="view-btn"
+                    onclick="showDetails(
+                        'AirPods',
+                        'Found',
+                        'College Library',
+                        '23 September 2026',
+                        'White AirPods case found near the library entrance.'
+                    )">
+                    View Details
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ITEM 3 -->
+        <div class="item-card" data-type="lost" data-name="blue water bottle">
+
+            <div class="item-image">
+                🥤
+            </div>
+
+            <div class="item-content">
+
+                <span class="status lost">LOST</span>
+
+                <h3>Blue Water Bottle</h3>
+
+                <p class="item-info">📍 Basketball Court</p>
+
+                <p class="item-info">📅 22 September 2026</p>
+
+                <p class="item-info">
+                    Blue Milton bottle with a sticker.
+                </p>
+
+                <button
+                    class="view-btn"
+                    onclick="showDetails(
+                        'Blue Water Bottle',
+                        'Lost',
+                        'Basketball Court',
+                        '22 September 2026',
+                        'Blue Milton bottle with a small sticker on it.'
+                    )">
+                    View Details
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ITEM 4 -->
+        <div class="item-card" data-type="found" data-name="student id card">
+
+            <div class="item-image">
+                🪪
+            </div>
+
+            <div class="item-content">
+
+                <span class="status found">FOUND</span>
+
+                <h3>Student ID Card</h3>
+
+                <p class="item-info">📍 Main Building</p>
+
+                <p class="item-info">📅 21 September 2026</p>
+
+                <p class="item-info">
+                    Student identity card found near reception.
+                </p>
+
+                <button
+                    class="view-btn"
+                    onclick="showDetails(
+                        'Student ID Card',
+                        'Found',
+                        'Main Building',
+                        '21 September 2026',
+                        'Student ID card found near the reception area.'
+                    )">
+                    View Details
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ITEM 5 -->
+        <div class="item-card" data-type="lost" data-name="black backpack">
+
+            <div class="item-image">
+                🎒
+            </div>
+
+            <div class="item-content">
+
+                <span class="status lost">LOST</span>
+
+                <h3>Black Backpack</h3>
+
+                <p class="item-info">📍 Cafeteria</p>
+
+                <p class="item-info">📅 20 September 2026</p>
+
+                <p class="item-info">
+                    Black laptop backpack with blue keychain.
+                </p>
+
+                <button
+                    class="view-btn"
+                    onclick="showDetails(
+                        'Black Backpack',
+                        'Lost',
+                        'Cafeteria',
+                        '20 September 2026',
+                        'Black laptop backpack with a blue keychain.'
+                    )">
+                    View Details
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ITEM 6 -->
+        <div class="item-card" data-type="found" data-name="calculator">
+
+            <div class="item-image">
+                🧮
+            </div>
+
+            <div class="item-content">
+
+                <span class="status found">FOUND</span>
+
+                <h3>Scientific Calculator</h3>
+
+                <p class="item-info">📍 Classroom 302</p>
+
+                <p class="item-info">📅 19 September 2026</p>
+
+                <p class="item-info">
+                    Casio scientific calculator.
+                </p>
+
+                <button
+                    class="view-btn"
+                    onclick="showDetails(
+                        'Scientific Calculator',
+                        'Found',
+                        'Classroom 302',
+                        '19 September 2026',
+                        'Casio scientific calculator found inside classroom.'
+                    )">
+                    View Details
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- REPORT FORM -->
+<section class="report-section" id="report">
+
+    <div class="report-container">
+
+        <h2>Report an Item</h2>
+
+        <p>
+            Help someone find their belongings or report something you lost.
+        </p>
+
+
+        <form class="form" onsubmit="submitReport(event)">
+
+            <div class="form-group">
+
+                <label>What happened?</label>
+
+                <select id="reportType" required>
+
+                    <option value="">
+                        Select
+                    </option>
+
+                    <option value="Lost">
+                        I lost something
+                    </option>
+
+                    <option value="Found">
+                        I found something
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Item Name</label>
+
+                <input
+                    type="text"
+                    id="itemName"
+                    placeholder="e.g. Black Wallet"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Category</label>
+
+                <select required>
+
+                    <option value="">
+                        Select category
+                    </option>
+
+                    <option>Electronics</option>
+                    <option>Documents / ID</option>
+                    <option>Bags</option>
+                    <option>Clothing</option>
+                    <option>Accessories</option>
+                    <option>Other</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Location</label>
+
+                <input
+                    type="text"
+                    placeholder="Where was it lost/found?"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Date</label>
+
+                <input
+                    type="date"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Description</label>
+
+                <textarea
+                    placeholder="Describe the item..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Upload Image</label>
+
+                <input type="file" accept="image/*">
+
+            </div>
+
+
+            <button class="submit-btn" type="submit">
+                Submit Report
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <h3>FindIt</h3>
+
+    <p>
+        Campus Lost & Found Portal
+    </p>
+
+    <p>
+        © 2026 FindIt
+    </p>
+
+</footer>
+
+
+<!-- ITEM DETAILS MODAL -->
+<div class="modal" id="detailsModal">
+
+    <div class="modal-content">
+
+        <span class="close" onclick="closeModal()">
+            ×
+        </span>
+
+        <h2 id="modalTitle"></h2>
+
+        <span id="modalStatus" class="status"></span>
+
+        <p class="item-info">
+            📍 <strong>Location:</strong>
+            <span id="modalLocation"></span>
+        </p>
+
+        <p class="item-info">
+            📅 <strong>Date:</strong>
+            <span id="modalDate"></span>
+        </p>
+
+        <p class="item-info">
+            📝 <strong>Description:</strong>
+            <span id="modalDescription"></span>
+        </p>
+
+        <button
+            class="submit-btn"
+            onclick="contactUser()"
+            style="margin-top:20px;">
+            Contact User
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- LOGIN MODAL -->
+<div class="modal" id="loginModal">
+
+    <div class="modal-content">
+
+        <span class="close" onclick="closeLogin()">
+            ×
+        </span>
+
+        <h2>Student Login</h2>
+
+        <div class="form-group">
+
+            <label>Email</label>
+
+            <input
+                type="email"
+                placeholder="student@college.edu"
+            >
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                placeholder="••••••••"
+            >
+
+        </div>
+
+        <button
+            class="submit-btn"
+            onclick="login()">
+            Login
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    /* SEARCH */
+
+    function searchItems() {
+
+        let input =
+            document.getElementById("searchInput")
+            .value
+            .toLowerCase();
+
+        let cards =
+            document.querySelectorAll(".item-card");
+
+        cards.forEach(card => {
+
+            let name =
+                card.dataset.name;
+
+            if (name.includes(input)) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+
+        });
+
+    }
+
+
+    /* FILTER */
+
+    function filterItems(type, button) {
+
+        let cards =
+            document.querySelectorAll(".item-card");
+
+        let buttons =
+            document.querySelectorAll(".filters button");
+
+        buttons.forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+
+        cards.forEach(card => {
+
+            if (
+                type === "all" ||
+                card.dataset.type === type
+            ) {
+
+                card.style.display = "block";
+
+            } else {
+
+                card.style.display = "none";
+
+            }
+
+        });
+
+    }
+
+
+    /* ITEM DETAILS */
+
+    function showDetails(
+        name,
+        type,
+        location,
+        date,
+        description
+    ) {
+
+        document.getElementById("modalTitle")
+            .innerText = name;
+
+        let status =
+            document.getElementById("modalStatus");
+
+        status.innerText =
+            type.toUpperCase();
+
+        status.className =
+            "status " +
+            (type === "Lost" ? "lost" : "found");
+
+
+        document.getElementById("modalLocation")
+            .innerText = location;
+
+        document.getElementById("modalDate")
+            .innerText = date;
+
+        document.getElementById("modalDescription")
+            .innerText = description;
+
+
+        document.getElementById("detailsModal")
+            .style.display = "flex";
+
+    }
+
+
+    function closeModal() {
+
+        document.getElementById("detailsModal")
+            .style.display = "none";
+
+    }
+
+
+    /* REPORT */
+
+    function scrollToReport(type) {
+
+        document.getElementById("report")
+            .scrollIntoView({
+                behavior: "smooth"
+            });
+
+        setTimeout(() => {
+
+            document.getElementById("reportType")
+                .value = type;
+
+        }, 500);
+
+    }
+
+
+    function submitReport(event) {
+
+        event.preventDefault();
+
+        let name =
+            document.getElementById("itemName")
+            .value;
+
+        let type =
+            document.getElementById("reportType")
+            .value;
+
+        alert(
+            "Report submitted successfully!\\n\\n" +
+            type + " item: " + name
+        );
+
+        event.target.reset();
+
+    }
+
+
+    /* LOGIN */
+
+    function showLogin() {
+
+        document.getElementById("loginModal")
+            .style.display = "flex";
+
+    }
+
+
+    function closeLogin() {
+
+        document.getElementById("loginModal")
+            .style.display = "none";
+
+    }
+
+
+    function login() {
+
+        alert("Login functionality will be connected to your Java backend.");
+
+        closeLogin();
+
+    }
+
+
+    function contactUser() {
+
+        alert(
+            "Contact functionality will be connected to your Java backend."
+        );
+
+    }
+
+
+    /* CLOSE MODAL WHEN CLICKING OUTSIDE */
+
+    window.onclick = function(event) {
+
+        let details =
+            document.getElementById("detailsModal");
+
+        let login =
+            document.getElementById("loginModal");
+
+        if (event.target === details) {
+            details.style.display = "none";
+        }
+
+        if (event.target === login) {
+            login.style.display = "none";
+        }
+
+    };
+
+</script>
+
+</body>
+</html>
