@@ -129,7 +129,690 @@
     </div>
 
 
+<<<<<<< HEAD
     <script src="app.js"></script>
 
 </body>
 </html>
+=======
+    <div class="items-grid" id="itemsGrid">
+
+        <!-- ITEM 1 -->
+        <div class="item-card" data-type="lost" data-name="black wallet">
+
+            <div class="item-image">
+                👛
+            </div>
+
+            <div class="item-content">
+
+                <span class="status lost">LOST</span>
+
+                <h3>Black Wallet</h3>
+
+                <p class="item-info">📍 CSE Department</p>
+
+                <p class="item-info">📅 24 September 2026</p>
+
+                <p class="item-info">
+                    Black leather wallet with college ID.
+                </p>
+
+                <button
+                    class="view-btn"
+                    onclick="showDetails(
+                        'Black Wallet',
+                        'Lost',
+                        'CSE Department',
+                        '24 September 2026',
+                        'Black leather wallet containing a college ID.'
+                    )">
+                    View Details
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ITEM 2 -->
+        <div class="item-card" data-type="found" data-name="airpods">
+
+            <div class="item-image">
+                🎧
+            </div>
+
+            <div class="item-content">
+
+                <span class="status found">FOUND</span>
+
+                <h3>AirPods</h3>
+
+                <p class="item-info">📍 College Library</p>
+
+                <p class="item-info">📅 23 September 2026</p>
+
+                <p class="item-info">
+                    White AirPods case found near the entrance.
+                </p>
+
+                <button
+                    class="view-btn"
+                    onclick="showDetails(
+                        'AirPods',
+                        'Found',
+                        'College Library',
+                        '23 September 2026',
+                        'White AirPods case found near the library entrance.'
+                    )">
+                    View Details
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ITEM 3 -->
+        <div class="item-card" data-type="lost" data-name="blue water bottle">
+
+            <div class="item-image">
+                🥤
+            </div>
+
+            <div class="item-content">
+
+                <span class="status lost">LOST</span>
+
+                <h3>Blue Water Bottle</h3>
+
+                <p class="item-info">📍 Basketball Court</p>
+
+                <p class="item-info">📅 22 September 2026</p>
+
+                <p class="item-info">
+                    Blue Milton bottle with a sticker.
+                </p>
+
+                <button
+                    class="view-btn"
+                    onclick="showDetails(
+                        'Blue Water Bottle',
+                        'Lost',
+                        'Basketball Court',
+                        '22 September 2026',
+                        'Blue Milton bottle with a small sticker on it.'
+                    )">
+                    View Details
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ITEM 4 -->
+        <div class="item-card" data-type="found" data-name="student id card">
+
+            <div class="item-image">
+                🪪
+            </div>
+
+            <div class="item-content">
+
+                <span class="status found">FOUND</span>
+
+                <h3>Student ID Card</h3>
+
+                <p class="item-info">📍 Main Building</p>
+
+                <p class="item-info">📅 21 September 2026</p>
+
+                <p class="item-info">
+                    Student identity card found near reception.
+                </p>
+
+                <button
+                    class="view-btn"
+                    onclick="showDetails(
+                        'Student ID Card',
+                        'Found',
+                        'Main Building',
+                        '21 September 2026',
+                        'Student ID card found near the reception area.'
+                    )">
+                    View Details
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ITEM 5 -->
+        <div class="item-card" data-type="lost" data-name="black backpack">
+
+            <div class="item-image">
+                🎒
+            </div>
+
+            <div class="item-content">
+
+                <span class="status lost">LOST</span>
+
+                <h3>Black Backpack</h3>
+
+                <p class="item-info">📍 Cafeteria</p>
+
+                <p class="item-info">📅 20 September 2026</p>
+
+                <p class="item-info">
+                    Black laptop backpack with blue keychain.
+                </p>
+
+                <button
+                    class="view-btn"
+                    onclick="showDetails(
+                        'Black Backpack',
+                        'Lost',
+                        'Cafeteria',
+                        '20 September 2026',
+                        'Black laptop backpack with a blue keychain.'
+                    )">
+                    View Details
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ITEM 6 -->
+        <div class="item-card" data-type="found" data-name="calculator">
+
+            <div class="item-image">
+                🧮
+            </div>
+
+            <div class="item-content">
+
+                <span class="status found">FOUND</span>
+
+                <h3>Scientific Calculator</h3>
+
+                <p class="item-info">📍 Classroom 302</p>
+
+                <p class="item-info">📅 19 September 2026</p>
+
+                <p class="item-info">
+                    Casio scientific calculator.
+                </p>
+
+                <button
+                    class="view-btn"
+                    onclick="showDetails(
+                        'Scientific Calculator',
+                        'Found',
+                        'Classroom 302',
+                        '19 September 2026',
+                        'Casio scientific calculator found inside classroom.'
+                    )">
+                    View Details
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- REPORT FORM -->
+<section class="report-section" id="report">
+
+    <div class="report-container">
+
+        <h2>Report an Item</h2>
+
+        <p>
+            Help someone find their belongings or report something you lost.
+        </p>
+
+
+        <form class="form" onsubmit="submitReport(event)">
+
+            <div class="form-group">
+
+                <label>What happened?</label>
+
+                <select id="reportType" required>
+
+                    <option value="">
+                        Select
+                    </option>
+
+                    <option value="Lost">
+                        I lost something
+                    </option>
+
+                    <option value="Found">
+                        I found something
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Item Name</label>
+
+                <input
+                    type="text"
+                    id="itemName"
+                    placeholder="e.g. Black Wallet"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Category</label>
+
+                <select required>
+
+                    <option value="">
+                        Select category
+                    </option>
+
+                    <option>Electronics</option>
+                    <option>Documents / ID</option>
+                    <option>Bags</option>
+                    <option>Clothing</option>
+                    <option>Accessories</option>
+                    <option>Other</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Location</label>
+
+                <input
+                    type="text"
+                    placeholder="Where was it lost/found?"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Date</label>
+
+                <input
+                    type="date"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Description</label>
+
+                <textarea
+                    placeholder="Describe the item..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Upload Image</label>
+
+                <input type="file" accept="image/*">
+
+            </div>
+
+
+            <button class="submit-btn" type="submit">
+                Submit Report
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <h3>FindIt</h3>
+
+    <p>
+        Campus Lost & Found Portal
+    </p>
+
+    <p>
+        © 2026 FindIt
+    </p>
+
+</footer>
+
+
+<!-- ITEM DETAILS MODAL -->
+<div class="modal" id="detailsModal">
+
+    <div class="modal-content">
+
+        <span class="close" onclick="closeModal()">
+            ×
+        </span>
+
+        <h2 id="modalTitle"></h2>
+
+        <span id="modalStatus" class="status"></span>
+
+        <p class="item-info">
+            📍 <strong>Location:</strong>
+            <span id="modalLocation"></span>
+        </p>
+
+        <p class="item-info">
+            📅 <strong>Date:</strong>
+            <span id="modalDate"></span>
+        </p>
+
+        <p class="item-info">
+            📝 <strong>Description:</strong>
+            <span id="modalDescription"></span>
+        </p>
+
+        <button
+            class="submit-btn"
+            onclick="contactUser()"
+            style="margin-top:20px;">
+            Contact User
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- LOGIN MODAL -->
+<div class="modal" id="loginModal">
+
+    <div class="modal-content">
+
+        <span class="close" onclick="closeLogin()">
+            ×
+        </span>
+
+        <h2>Student Login</h2>
+
+        <div class="form-group">
+
+            <label>Email</label>
+
+            <input
+                type="email"
+                placeholder="student@college.edu"
+            >
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                placeholder="••••••••"
+            >
+
+        </div>
+
+        <button
+            class="submit-btn"
+            onclick="login()">
+            Login
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    /* SEARCH */
+
+    function searchItems() {
+
+        let input =
+            document.getElementById("searchInput")
+            .value
+            .toLowerCase();
+
+        let cards =
+            document.querySelectorAll(".item-card");
+
+        cards.forEach(card => {
+
+            let name =
+                card.dataset.name;
+
+            if (name.includes(input)) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+
+        });
+
+    }
+
+
+    /* FILTER */
+
+    function filterItems(type, button) {
+
+        let cards =
+            document.querySelectorAll(".item-card");
+
+        let buttons =
+            document.querySelectorAll(".filters button");
+
+        buttons.forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+
+        cards.forEach(card => {
+
+            if (
+                type === "all" ||
+                card.dataset.type === type
+            ) {
+
+                card.style.display = "block";
+
+            } else {
+
+                card.style.display = "none";
+
+            }
+
+        });
+
+    }
+
+
+    /* ITEM DETAILS */
+
+    function showDetails(
+        name,
+        type,
+        location,
+        date,
+        description
+    ) {
+
+        document.getElementById("modalTitle")
+            .innerText = name;
+
+        let status =
+            document.getElementById("modalStatus");
+
+        status.innerText =
+            type.toUpperCase();
+
+        status.className =
+            "status " +
+            (type === "Lost" ? "lost" : "found");
+
+
+        document.getElementById("modalLocation")
+            .innerText = location;
+
+        document.getElementById("modalDate")
+            .innerText = date;
+
+        document.getElementById("modalDescription")
+            .innerText = description;
+
+
+        document.getElementById("detailsModal")
+            .style.display = "flex";
+
+    }
+
+
+    function closeModal() {
+
+        document.getElementById("detailsModal")
+            .style.display = "none";
+
+    }
+
+
+    /* REPORT */
+
+    function scrollToReport(type) {
+
+        document.getElementById("report")
+            .scrollIntoView({
+                behavior: "smooth"
+            });
+
+        setTimeout(() => {
+
+            document.getElementById("reportType")
+                .value = type;
+
+        }, 500);
+
+    }
+
+
+    function submitReport(event) {
+
+        event.preventDefault();
+
+        let name =
+            document.getElementById("itemName")
+            .value;
+
+        let type =
+            document.getElementById("reportType")
+            .value;
+
+        alert(
+            "Report submitted successfully!\\n\\n" +
+            type + " item: " + name
+        );
+
+        event.target.reset();
+
+    }
+
+
+    /* LOGIN */
+
+    function showLogin() {
+
+        document.getElementById("loginModal")
+            .style.display = "flex";
+
+    }
+
+
+    function closeLogin() {
+
+        document.getElementById("loginModal")
+            .style.display = "none";
+
+    }
+
+
+    function login() {
+
+        alert("Login functionality will be connected to your Java backend.");
+
+        closeLogin();
+
+    }
+
+
+    function contactUser() {
+
+        alert(
+            "Contact functionality will be connected to your Java backend."
+        );
+
+    }
+
+
+    /* CLOSE MODAL WHEN CLICKING OUTSIDE */
+
+    window.onclick = function(event) {
+
+        let details =
+            document.getElementById("detailsModal");
+
+        let login =
+            document.getElementById("loginModal");
+
+        if (event.target === details) {
+            details.style.display = "none";
+        }
+
+        if (event.target === login) {
+            login.style.display = "none";
+        }
+
+    };
+
+</script>
+
+</body>
+</html>
+>>>>>>> f1d6e79e1109316f41b1d21bd939ea2de912e6ba
